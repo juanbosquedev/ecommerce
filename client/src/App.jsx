@@ -29,6 +29,7 @@ function App() {
             ></Route>
           )}
           <Route path="/*" element={<Navigate to="/Tienda"></Navigate>}></Route>
+          
         </Routes>
       </div>
     </>

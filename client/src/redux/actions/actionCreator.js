@@ -7,7 +7,7 @@ export const DELETE_ORDERED = "DELETE_ORDERED";
 
 export const PURCHES_ORDER = "PURCHES_ORDER";
 
-const { VITE_API_URL } = import.meta.env;
+const { VITE_API_URL } = import.meta.env; //http://localhost:8000/
 
 export function get_all() {
   return async function (dispatch) {
