@@ -1,4 +1,12 @@
-import { ADD_ORDER, DELETE_ORDER, GET_ALL,USER_LOG, PURCHES_ORDER, DELETE_ORDERED } from "../actions/actionCreator";
+import {
+  ADD_ORDER,
+  DELETE_ORDER,
+  GET_ALL,
+  USER_LOG,
+  PURCHES_ORDER,
+  DELETE_ORDERED,
+  CLEAN_ORDER,
+} from "../actions/actionCreator";
 
 const initialState = {
   // users:[],PURCHESE_ORDER
@@ -17,7 +25,7 @@ const initialState = {
   },
 
   products: [],
- comprasBack: [],
+  comprasBack: [],
   order: {
     user: "",
     purcheseOrder: [],
@@ -45,30 +53,43 @@ const reducer = (state = initialState, action) => {
         ...state,
         order: {
           ...state.order,
-          purcheseOrder:  [...state.order.purcheseOrder, action.payload],
+          purcheseOrder: [...state.order.purcheseOrder, action.payload],
         },
-      }
+      };
     }
-    case DELETE_ORDER: {
+    case CLEAN_ORDER: {
       return {
         ...state,
         order: {
           ...state.order,
-          purcheseOrder:  state.order.purcheseOrder.filter((item) => item.id !== action.payload),
+          purcheseOrder: [],
         },
-      }
+      };
+    }
+    case DELETE_ORDER : {
+      return {
+        ...state,
+        order: {
+          ...state.order,
+          purcheseOrder: state.order.purcheseOrder.filter(
+            (item) => item.id !== action.payload
+          ),
+        },
+      };
     }
     case PURCHES_ORDER: {
       return {
         ...state,
-        comprasBack: state.comprasBack.concat(state.order.purcheseOrder )
-      }
+        comprasBack: state.comprasBack.concat(action.payload),
+      };
     }
     case DELETE_ORDERED: {
       return {
         ...state,
-        comprasBack: state.comprasBack.filter((item) => item.id !== action.payload),
-      }
+        comprasBack: state.comprasBack.filter(
+          (item) => item.id !== action.payload
+        ),
+      };
     }
     default:
       return { ...state };

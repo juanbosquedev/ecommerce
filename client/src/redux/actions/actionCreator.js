@@ -2,6 +2,7 @@ import axios from "axios";
 export const GET_ALL = "GET_ALL";
 export const USER_LOG = "USER_LOG";
 export const ADD_ORDER = "ADD_ORDER";
+export const CLEAN_ORDER = "CLEAN_ORDER"
 export const DELETE_ORDER = "DELETE_ORDER";
 export const DELETE_ORDERED = "DELETE_ORDERED";
 
@@ -50,6 +51,20 @@ export function addOrder(data) {
   };
 }
 
+
+export function puerchesOrder(purchess) {
+  return async function (dispatch) {
+    try {
+      return dispatch({ type: PURCHES_ORDER, payload:purchess});
+    } catch (error) {
+      return dispatch({
+        type: PURCHES_ORDER,
+        payload: error,
+      });
+    }
+  };
+}
+
 export function deleteOrder(ID) {
   return async function (dispatch) {
     try {
@@ -62,14 +77,13 @@ export function deleteOrder(ID) {
     }
   };
 }
-
-export function puerchesOrder() {
+export function cleanOrder() {
   return async function (dispatch) {
     try {
-      return dispatch({ type: PURCHES_ORDER });
+      return dispatch({ type: CLEAN_ORDER});
     } catch (error) {
       return dispatch({
-        type: PURCHES_ORDER,
+        type: CLEAN_ORDER,
         payload: error,
       });
     }
@@ -79,10 +93,10 @@ export function puerchesOrder() {
 export function deleteOrdered(ID) {
   return async function (dispatch) {
     try {
-      return dispatch({ type: DELETE_ORDER, payload: ID });
+      return dispatch({ type: DELETE_ORDERED, payload: ID });
     } catch (error) {
       return dispatch({
-        type: DELETE_ORDER,
+        type: DELETE_ORDERED,
         payload: error,
       });
     }
