@@ -55,7 +55,7 @@ export const Login = () => {
         ></input>
       </div>
 
-      <button type="button" onClick={onSubmit} className="btn btn-primary">
+      <button type="submit" onClick={onSubmit} className="btn btn-primary">
         Ingresar
       </button>
       {userLogs === false && <p>datos incorrectos</p>}
