@@ -18,8 +18,8 @@ export const Products = ({logged}) => {
     dispatch(addOrder(purches))
   };
 
-  const handleEliminar = (id) => {
-    deleteOrder(id);
+  const handleDelete = (id) => {
+    dispatch(deleteOrder(id));
   };
 
   return (
@@ -35,7 +35,7 @@ export const Products = ({logged}) => {
             descripcion={prod.description}
             precio={prod.price}
             handleAdd={() => handleAdd(prod)}
-            handleEliminar={() => handleEliminar(prod.id)}
+            handleDelete={() => handleDelete(prod.id)}
             logged={logged}
           />
         );
