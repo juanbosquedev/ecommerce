@@ -1,35 +1,38 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { Route, Routes, Navigate } from "react-router-dom";
+import { NavBar } from "./components/Nav";
+import { Login } from "./components/Login";
+import { Products } from "./components/Products";
+import { useSelector } from "react-redux";
+import { Carrito } from "./components/Carrito";
+import { Pedidos } from "./components/Pedidos";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const userLog = useSelector((state) => state.userLogged.logged);
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <NavBar logged={userLog} />
+      <div className="container">
+        <Routes>
+          {!userLog && <Route path="/" element={<Login />}></Route>}
+          <Route path="/Tienda" element={<Products logged={userLog} />}></Route>
+          {userLog && (
+            <Route
+              path="/Carrito"
+              element={<Carrito logged={userLog} />}
+            ></Route>
+          )}
+          {userLog && (
+            <Route
+              path="/Pedidos"
+              element={<Pedidos logged={userLog} />}
+            ></Route>
+          )}
+          <Route path="/*" element={<Navigate to="/Tienda"></Navigate>}></Route>
+        </Routes>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
