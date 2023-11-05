@@ -1,4 +1,4 @@
-const server = require("./src/serrver")     
+const server = require("./src/server")     
 
 const PORT= 8000;
 
