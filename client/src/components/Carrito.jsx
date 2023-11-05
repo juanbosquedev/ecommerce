@@ -7,9 +7,9 @@ export const Carrito = () => {
 
 
  const dispatch = useDispatch();
-  // const calcularTotal=()=>{
-  //   return purchesOrd.reduce((total, item)=> total+ item.price , 0).toFixed(2) 
-  // }
+  const calcularTotal=()=>{
+    return purchesOrd.reduce((total, item)=> total+ item.price , 0).toFixed(2) 
+  }
   return (
     <>
     <div>CARRITO</div>
@@ -45,7 +45,7 @@ export const Carrito = () => {
             );
           })}
           <th><b>TOTAL:</b></th>
-          {/* <td>${calcularTotal()}</td> */}
+          <td>${calcularTotal()}</td>
           <td></td>
           <td></td>
         </tbody>
