@@ -7,12 +7,12 @@ export const DELETE_ORDERED = "DELETE_ORDERED";
 
 export const PURCHES_ORDER = "PURCHES_ORDER";
 
-
+const { VITE_API_URL } = import.meta.env;
 
 export function get_all() {
   return async function (dispatch) {
     try {
-      const { data } = await axios.get(`https://fakestoreapi.com/products`);
+      const { data } = await axios.get(`${VITE_API_URL}productsAll`);
       return dispatch({ type: GET_ALL, payload: data });
     } catch (error) {
       return dispatch({
@@ -35,17 +35,17 @@ export function userLog(data) {
     }
   };
 }
-  export function addOrder(data) {
-    return async function (dispatch) {
-      try {
-        return dispatch({ type: ADD_ORDER, payload: data });
-      } catch (error) {
-        return dispatch({
-          type: ADD_ORDER,
-          payload: error,
-        });
-      }
-    };
+export function addOrder(data) {
+  return async function (dispatch) {
+    try {
+      return dispatch({ type: ADD_ORDER, payload: data });
+    } catch (error) {
+      return dispatch({
+        type: ADD_ORDER,
+        payload: error,
+      });
+    }
+  };
 }
 
 export function deleteOrder(ID) {
@@ -64,7 +64,7 @@ export function deleteOrder(ID) {
 export function puerchesOrder() {
   return async function (dispatch) {
     try {
-      return dispatch({ type: PURCHES_ORDER,   });
+      return dispatch({ type: PURCHES_ORDER });
     } catch (error) {
       return dispatch({
         type: PURCHES_ORDER,
