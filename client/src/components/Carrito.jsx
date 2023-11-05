@@ -1,18 +1,25 @@
 import { useSelector, useDispatch } from "react-redux/";
-import { deleteOrder, puerchesOrder} from "../redux/actions/actionCreator";
+import {
+  deleteOrder,
+  puerchesOrder,
+  cleanOrder,
+} from "../redux/actions/actionCreator";
 
 export const Carrito = () => {
+  const purchesOrd = useSelector((state) => state.order.purcheseOrder);
 
- const purchesOrd  = useSelector((state) => state.order.purcheseOrder);
+  const handleOrder = () => {
+    dispatch(puerchesOrder(purchesOrd));
+    dispatch(cleanOrder());
+  };
 
-
- const dispatch = useDispatch();
-  const calcularTotal=()=>{
-    return purchesOrd.reduce((total, item)=> total+ item.price , 0).toFixed(2) 
-  }
+  const dispatch = useDispatch();
+  const calcularTotal = () => {
+    return purchesOrd.reduce((total, item) => total + item.price, 0).toFixed(2);
+  };
   return (
     <>
-    <div>CARRITO</div>
+      <div>CARRITO</div>
       <hr />
       <table className="table">
         <thead>
@@ -29,9 +36,7 @@ export const Carrito = () => {
               <tr key={item.id}>
                 <th>{item.title}</th>
                 <td>{item.price}</td>
-                <td>
-              
-                </td>
+                <td></td>
                 <td>
                   <button
                     type="button"
@@ -44,16 +49,22 @@ export const Carrito = () => {
               </tr>
             );
           })}
-          <th><b>TOTAL:</b></th>
+          <th>
+            <b>TOTAL:</b>
+          </th>
           <td>${calcularTotal()}</td>
           <td></td>
           <td></td>
         </tbody>
       </table>
       <div className="d-grid gap-2">
-        <button className="btn btn-primary" 
-        onClick={dispatch(puerchesOrder(purchesOrd))}
-        disabled={purchesOrd<0}>SOLICITAR</button>
+        <button
+          className="btn btn-primary"
+          onClick={handleOrder}
+          disabled={purchesOrd < 0}
+        >
+          SOLICITAR
+        </button>
       </div>
     </>
   );
