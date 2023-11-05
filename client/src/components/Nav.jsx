@@ -38,15 +38,6 @@ export const NavBar = ({ logged }) => {
                 </NavLink>
               </li>
             )}
-            {logged && (
-              <li className="nav-item">
-                <NavLink to="/Carrito">
-                  <Badge badgeContent={orderProduct.length} color="primary">
-                    🛒
-                  </Badge>
-                </NavLink>
-              </li>
-            )}
             {!logged && (
               <li className="nav-item">
                 <NavLink to="/" className="nav-link">
@@ -56,6 +47,13 @@ export const NavBar = ({ logged }) => {
             )}
           </ul>
         </div>
+            {logged && (
+              <NavLink to="/Carrito">
+                <Badge badgeContent={orderProduct.length} color="primary">
+                  🛒
+                </Badge>
+              </NavLink>
+            )}
       </div>
     </nav>
   );
