@@ -34,7 +34,7 @@ export const Login = () => {
           className="form-control"
           id="user"
           name="user"
-          placeholder="user o admin"
+          placeholder="user name"
           value={user.user}
           onChange={onInputChange}
         ></input>
@@ -49,7 +49,7 @@ export const Login = () => {
           className="form-control"
           id="password"
           name="password"
-          placeholder="userpass o adminpass"
+          placeholder="password"
           value={user.password}
           onChange={onInputChange}
         ></input>
