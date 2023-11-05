@@ -12,8 +12,8 @@ const initialState = {
 
   userLogged: {
     name: "",
-    type: "",
-    logged: false,
+    role: "",
+    logged: "",
   },
 
   products: [],

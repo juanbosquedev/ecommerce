@@ -1,27 +1,15 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { userLog } from "../redux/actions/actionCreator";
 
 export const Login = () => {
   const dispatch = useDispatch();
+  const userLogs = useSelector((state) => state.userLogged.logged);
 
   const [user, setUser] = useState({
-    name: "",
-    mail: "",
-    logged: "m",
-    type: "",
+    user: "",
+    password: "",
   });
-
-  const handleLogin = async (name, mail) => {
-    if (
-      (name === "admin" && mail === "adminpass") ||
-      (name === "user" && mail === "userpass")
-    ) {
-      setUser({ ...user, type: name, logged: true });
-    } else {
-      setUser({ ...user, logged: false });
-    }
-  };
 
   const onInputChange = ({ target }) => {
     const { name, value } = target;
@@ -31,14 +19,9 @@ export const Login = () => {
     });
   };
 
-
   const onSubmit = (e) => {
     e.preventDefault(), 
-    handleLogin(user.name, user.mail);
-    if(user.logged===true){
-
-      dispatch(userLog(user))
-    }
+    dispatch(userLog(user));
   };
   return (
     <form onSubmit={onSubmit}>
@@ -49,25 +32,25 @@ export const Login = () => {
         <input
           type="text"
           className="form-control"
-          id="name"
-          name="name"
+          id="user"
+          name="user"
           placeholder="user o admin"
-          value={user.name}
+          value={user.user}
           onChange={onInputChange}
         ></input>
       </div>
 
       <div className="mb-3">
-        <label htmlFor="mail" className="form-label">
+        <label htmlFor="password" className="form-label">
           Email
         </label>
         <input
           type="text"
           className="form-control"
-          id="mail"
-          name="mail"
+          id="password"
+          name="password"
           placeholder="userpass o adminpass"
-          value={user.mail}
+          value={user.password}
           onChange={onInputChange}
         ></input>
       </div>
@@ -75,7 +58,7 @@ export const Login = () => {
       <button type="button" onClick={onSubmit} className="btn btn-primary">
         Ingresar
       </button>
-      {!user.logged && <p>datos incorrectos</p>}
+      {userLogs === false && <p>datos incorrectos</p>}
     </form>
   );
 };

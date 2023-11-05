@@ -23,9 +23,11 @@ export function get_all() {
   };
 }
 
-export function userLog(data) {
+export function userLog(user) {
   return async function (dispatch) {
     try {
+      const { data } = await axios.post(`${VITE_API_URL}userLogin`, user);
+
       return dispatch({ type: USER_LOG, payload: data });
     } catch (error) {
       return dispatch({
