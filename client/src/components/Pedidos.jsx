@@ -4,6 +4,11 @@ export const Pedidos = () => {
   const ordered = useSelector((state) => state.comprasBack);
   const dispatch = useDispatch();
 
+  const handleDelete = (id)=>{
+    console.log("dispare delete")
+    dispatch(deleteOrdered(id))
+  }
+
   return (
     <>
     <div>PEIDOS HECHOS</div>
@@ -25,7 +30,7 @@ export const Pedidos = () => {
                   <button
                     type="button"
                     className="btn btn-danger"
-                    onClick={() => dispatch(deleteOrdered(item.id))}
+                    onClick={() => handleDelete(item.id)}
                   >
                     Eliminar
                   </button>
