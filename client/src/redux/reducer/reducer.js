@@ -80,7 +80,7 @@ const reducer = (state = initialState, action) => {
     case PURCHES_ORDER: {
       return {
         ...state,
-        comprasBack: state.comprasBack.concat(action.payload),
+        comprasBack: action.payload,
       };
     }
     case DELETE_ORDERED: {
