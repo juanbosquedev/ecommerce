@@ -4,8 +4,10 @@ const controllers = require("../controllers");
 
 const router = Router();
 
-router.get("/productsAll", controllers.productsAll);
 router.post("/userLogin", controllers.userLogin);
+router.post("/userPurchese", controllers.userPurchese);
+router.get("/productsAll", controllers.productsAll);
+
 
 
 

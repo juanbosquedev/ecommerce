@@ -5,7 +5,6 @@ export const Pedidos = () => {
   const dispatch = useDispatch();
 
   const handleDelete = (id)=>{
-    console.log("dispare delete")
     dispatch(deleteOrdered(id))
   }
 
@@ -21,7 +20,7 @@ export const Pedidos = () => {
           </tr>
         </thead>
         <tbody>
-          {ordered.map((item) => {
+          {ordered?.map((item) => {
             return (
               <tr key={item.id}>
                 <th>{item.title}</th>

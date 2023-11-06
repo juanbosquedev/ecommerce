@@ -2,7 +2,7 @@ import axios from "axios";
 export const GET_ALL = "GET_ALL";
 export const USER_LOG = "USER_LOG";
 export const ADD_ORDER = "ADD_ORDER";
-export const CLEAN_ORDER = "CLEAN_ORDER"
+export const CLEAN_ORDER = "CLEAN_ORDER";
 export const DELETE_ORDER = "DELETE_ORDER";
 export const DELETE_ORDERED = "DELETE_ORDERED";
 
@@ -28,7 +28,6 @@ export function userLog(user) {
   return async function (dispatch) {
     try {
       const { data } = await axios.post(`${VITE_API_URL}userLogin`, user);
-
       return dispatch({ type: USER_LOG, payload: data });
     } catch (error) {
       return dispatch({
@@ -51,11 +50,12 @@ export function addOrder(data) {
   };
 }
 
-
 export function puerchesOrder(purchess) {
   return async function (dispatch) {
     try {
-      return dispatch({ type: PURCHES_ORDER, payload:purchess});
+      const { data } = await axios.post(`${VITE_API_URL}userPurchese`, purchess);
+      console.log(data, " soy data")
+      return dispatch({ type: PURCHES_ORDER, payload: data });
     } catch (error) {
       return dispatch({
         type: PURCHES_ORDER,
@@ -80,7 +80,7 @@ export function deleteOrder(ID) {
 export function cleanOrder() {
   return async function (dispatch) {
     try {
-      return dispatch({ type: CLEAN_ORDER});
+      return dispatch({ type: CLEAN_ORDER });
     } catch (error) {
       return dispatch({
         type: CLEAN_ORDER,
