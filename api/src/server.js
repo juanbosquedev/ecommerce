@@ -15,7 +15,7 @@ server.use((req, res, next) => {
   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
   next();
 });
-server.use("/", require("./routes/index"));
+server.use(require("./routes/index"));
 server.use("*", (req, res)=>{
   res.status(404).send("Not Found")
 });

@@ -1,7 +1,19 @@
-const server = require("./src/server")     
+require("dotenv").config();
+const server = require("./src/server");
+const { conn } = require("./src/database/database");
 
-const PORT= 8000;
+const { PORT } = process.env;
 
-server.listen(PORT, ()=>{
-    console.log(`listening on port: ${PORT}`)
-})
+async function main() {
+  try {
+    await conn.authenticate();
+    console.log("Connection has been established successfully.");
+    server.listen(PORT, () => {
+      console.log(`Server listening on port: ${PORT}`);
+    });
+  } catch (error) {
+    console.error("Unable to connect to the database:", error);
+  }
+}
+
+main();
