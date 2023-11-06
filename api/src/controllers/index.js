@@ -1,6 +1,7 @@
 
 module.exports = {
   userLogin: require("./userLogin"),
-  productsAll:require("./productsAll")
+  userPurchese: require("./userPurchese"),
+  productsAll:require("./productsAll"),
 
 };
