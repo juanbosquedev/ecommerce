@@ -5,6 +5,6 @@ module.exports = async (req, res) => {
     const { data } = await axios.get(`https://fakestoreapi.com/products`);
     if(data.length >0)return res.status(200).json(data);
   } catch (error) {
-    res.status(405).send(error);
+    res.status(506).json({ message: "Error interno del servidor" }, error);
   }
 };

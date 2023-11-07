@@ -1,13 +1,32 @@
 const users = require("../../users.json");
+const fs = require("fs");
 
-module.exports = (req, res) => {
-  const { user, password } = req.body;
-    console.log(user, password)
-  for (const userData of users) {
-    if (userData.user === user && userData.password === password) {
-      userData.logged = true;
-      return res.send(userData);
+const { Users } = require("../models/index");
+
+module.exports = async (req, res) => {
+  const jsonData = fs.readFileSync("users.json", "utf8");
+
+  const usersToCreate = JSON.parse(jsonData);
+
+  try {
+    const test = await Users.findAll();
+
+    if (test.length === 0) {
+      await Users.bulkCreate(usersToCreate);
     }
+
+    const { user, password } = req.body;
+    const userFromDB = await Users.findOne({ where: { user, password } });
+
+    if (userFromDB) {
+      userFromDB.logged = true;
+      await userFromDB.save();
+      return res.status(200).send(userFromDB);
+    } else {
+      const userData = { user, password, logged: false };
+      return res.status(401).send(userData);
+    }
+  } catch (error) {
+    res.status(500).send("Error interno del servidor");
   }
-  return res.send(false)
 };
