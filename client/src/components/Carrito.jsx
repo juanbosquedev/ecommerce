@@ -6,16 +6,16 @@ import {
 } from "../redux/actions/actionCreator";
 
 export const Carrito = () => {
-  const purchesOrd = useSelector((state) => state.order.purcheseOrder);
+  const order = useSelector((state) => state.order);
 
   const handleOrder = () => {
-    dispatch(puerchesOrder(purchesOrd));
+    dispatch(puerchesOrder(order));
     dispatch(cleanOrder());
   };
 
   const dispatch = useDispatch();
   const calcularTotal = () => {
-    return purchesOrd.reduce((total, item) => total + item.price, 0).toFixed(2);
+    return order.purcheseOrder.reduce((total, item) => total + item.price, 0).toFixed(2);
   };
   return (
     <>
@@ -31,7 +31,7 @@ export const Carrito = () => {
           </tr>
         </thead>
         <tbody>
-          {purchesOrd?.map((item) => {
+          {order.purcheseOrder?.map((item) => {
             return (
               <tr key={item.id}>
                 <th>{item.title}</th>
@@ -61,7 +61,7 @@ export const Carrito = () => {
         <button
           className="btn btn-primary"
           onClick={handleOrder}
-          disabled={purchesOrd < 0}
+          disabled={order.purcheseOrder < 0}
         >
           SOLICITAR
         </button>
