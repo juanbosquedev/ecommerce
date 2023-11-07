@@ -1,20 +1,22 @@
-[{
-    "user":"Juan",
+[
+  {
+    "user": "Juan",
     "password": "123",
-    "role":"admin"
-},
-{
-    "user":"carlos",
+    "role": "admin"
+  },
+  {
+    "user": "carlos",
     "password": "123",
-    "role":"admin"
-},
-{
-    "user":"Jose",
+    "role": "admin"
+  },
+  {
+    "user": "Jose",
     "password": "123",
-    "role":"user"
-},
-{
-    "user":"Paola",
+    "role": "user"
+  },
+  {
+    "user": "Paola",
     "password": "123",
-    "role":"user"
-}]
+    "role": "user"
+  }
+]
