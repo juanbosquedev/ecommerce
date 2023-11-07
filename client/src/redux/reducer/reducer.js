@@ -3,9 +3,10 @@ import {
   DELETE_ORDER,
   GET_ALL,
   USER_LOG,
-  PURCHES_ORDER,
   DELETE_ORDERED,
   CLEAN_ORDER,
+  GET_PURCHASES,
+  GET_USER_PURCHASES
 } from "../actions/actionCreator";
 
 const initialState = {
@@ -19,6 +20,7 @@ const initialState = {
   // },
 
   userLogged: {
+    id:"",
     name: "",
     role: "",
     logged: "",
@@ -27,9 +29,8 @@ const initialState = {
   products: [],
   comprasBack: [],
   order: {
-    user: "",
+    userID: "",
     purcheseOrder: [],
-    state: false,
   },
 };
 
@@ -46,6 +47,10 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         userLogged: action.payload,
+        order: {
+          ...state.order,
+          userID: action.payload.id,
+        },
       };
     }
     case ADD_ORDER: {
@@ -77,7 +82,15 @@ const reducer = (state = initialState, action) => {
         },
       };
     }
-    case PURCHES_ORDER: {
+  
+    
+    case  GET_USER_PURCHASES: {
+      return {
+        ...state,
+        comprasBack: action.payload,
+      };
+    }
+    case  GET_PURCHASES: {
       return {
         ...state,
         comprasBack: action.payload,
