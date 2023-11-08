@@ -1,13 +1,17 @@
-const { Purchases, Users } = require("../models");
+const { Purchases } = require("../models");
 
 module.exports = async (req, res) => {
-    try {
-        const usuarioId = req.params.usuarioId;
-        const purchase = await Purchases.destroy({
-          where: { usuarioId },
-        });
-        res.status(200).send(purchase);
-      } catch (error) {
-        res.status(506).json({ message: "Error interno del servidor" }, error);
-      }
+  try {
+    const { id } = req.params;
+    const filter = await Purchases.findOne({
+      where: { id },
+    });
+    const deleted = await Purchases.destroy({
+      where: { id },
+    });
+    deleted === 1 ? res.status(204).json(filter) : res.status(204).json(deleted);
+  } catch (error) {
+    console.log(error, " error");
+    res.status(506).json({ message: "Error interno del servidor" }, error);
+  }
 };
