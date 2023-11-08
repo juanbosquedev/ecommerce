@@ -6,6 +6,8 @@ import {
 } from "../redux/actions/actionCreator";
 
 export const Carrito = () => {
+  
+  const dispatch = useDispatch();
   const order = useSelector((state) => state.order);
 
   const handleOrder = () => {
@@ -13,7 +15,6 @@ export const Carrito = () => {
     dispatch(cleanOrder());
   };
 
-  const dispatch = useDispatch();
   const calcularTotal = () => {
     return order.purcheseOrder.reduce((total, item) => total + item.price, 0).toFixed(2);
   };
@@ -36,7 +37,6 @@ export const Carrito = () => {
               <tr key={item.id}>
                 <th>{item.title}</th>
                 <td>{item.price}</td>
-                <td></td>
                 <td>
                   <button
                     type="button"

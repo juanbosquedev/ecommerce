@@ -4,25 +4,36 @@ import {
   get_purchases,
   get_purchaseById,
 } from "../redux/actions/actionCreator";
-import { useEffect } from "react";
+import { useEffect, useState, useMemo } from "react";
+
 export const Pedidos = () => {
   const user = useSelector((state) => state.userLogged);
+  const ordered = useSelector((state) => state.comprasBack);
+  console.log(ordered, " soy ordered");
+  const [count, setCount] = useState(0);
   const dispatch = useDispatch();
 
-  const handleDelete = (id) => {
-    dispatch(deleteOrdered(id));
-  };
-  const ordered = useSelector((state) => state.comprasBack);
-
-  useEffect(() => {
+  const getPurchase = () => {
     user.role === "admin"
       ? dispatch(get_purchases())
       : dispatch(get_purchaseById(user.id));
-  },[dispatch]);
+  };
+  const calculation = useMemo(() => console.log("ejectuo"), getPurchase(), [
+    ordered,
+  ]);
 
+  const handleDelete = (id) => {
+    setCount(count + 1);
+    dispatch(deleteOrdered(id));
+  };
+
+  useEffect(() => {
+    getPurchase();
+  }, []);
   return (
     <>
       <div>PEDIDOS HECHOS</div>
+      {calculation}
       <hr />
       <table className="table">
         <thead>
@@ -32,10 +43,12 @@ export const Pedidos = () => {
           </tr>
         </thead>
         <tbody>
-          {ordered &&
+          {typeof ordered === "string" ? (
+            <h1 className="display-6">{ordered}</h1>
+          ) : (
             ordered.map((item) => {
               return (
-                <tr key={item.id}>
+                <tr key={item.idTable}>
                   <th>{item.title}</th>
 
                   <td>
@@ -49,7 +62,8 @@ export const Pedidos = () => {
                   </td>
                 </tr>
               );
-            })}
+            })
+          )}
         </tbody>
       </table>
     </>

@@ -87,7 +87,7 @@ const reducer = (state = initialState, action) => {
     case  GET_USER_PURCHASES: {
       return {
         ...state,
-        comprasBack: action.payload,
+        comprasBack: action.payload ,
       };
     }
     case  GET_PURCHASES: {
@@ -97,6 +97,7 @@ const reducer = (state = initialState, action) => {
       };
     }
     case DELETE_ORDERED: {
+     
       return {
         ...state,
         comprasBack: state.comprasBack.filter(
