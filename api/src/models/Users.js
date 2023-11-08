@@ -1,13 +1,12 @@
 const { DataTypes } = require("sequelize");
 const { conn } = require("../database/database");
-// const {Purchases} = require('../models')
 
 const Users = conn.define(
   "users",
   {
     id: {
       type: DataTypes.INTEGER,
-      autoIncrement:true,
+      autoIncrement: true,
       unique: true,
       primaryKey: true,
       allowNull: false,
@@ -17,7 +16,7 @@ const Users = conn.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    password:{
+    password: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -27,7 +26,7 @@ const Users = conn.define(
     },
     logged: {
       type: DataTypes.BOOLEAN,
-      defaultValue:false,
+      defaultValue: false,
     },
   },
   {

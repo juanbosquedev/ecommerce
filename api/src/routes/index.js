@@ -18,7 +18,6 @@ router.get("/productsAll", productsAll);
 router.get("/userPurchase/:userID", purchaseById);
 router.get("/getPurchases", getPurchases);
 
-router.delete("/userPurchase/:userID", deleteUserPurchase);
-router.delete("/deletePurchases/:userID", deletePurchases);
+router.delete("/userPurchase/:id", deleteUserPurchase);
 
 module.exports = router;

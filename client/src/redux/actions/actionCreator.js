@@ -5,8 +5,8 @@ export const ADD_ORDER = "ADD_ORDER";
 export const CLEAN_ORDER = "CLEAN_ORDER";
 export const DELETE_ORDER = "DELETE_ORDER";
 export const DELETE_ORDERED = "DELETE_ORDERED";
-export const GET_PURCHASES = "GET_PURCHASES"
-export const GET_USER_PURCHASES = "GET_USER_PURCHASES"
+export const GET_PURCHASES = "GET_PURCHASES";
+export const GET_USER_PURCHASES = "GET_USER_PURCHASES";
 export const PURCHES_ORDER = "PURCHES_ORDER";
 
 const { VITE_API_URL } = import.meta.env; //http://localhost:8000/
@@ -54,8 +54,10 @@ export function addOrder(data) {
 export function puerchesOrder(purchas) {
   return async function (dispatch) {
     try {
-      const  data  = await axios.post(`${VITE_API_URL}userPurchase`, {purchas});
-      return dispatch({ type: PURCHES_ORDER });
+      const { data } = await axios.post(`${VITE_API_URL}userPurchase`, {
+        purchas,
+      });
+      return dispatch({ type: PURCHES_ORDER, payload: data });
     } catch (error) {
       return dispatch({
         type: PURCHES_ORDER,
@@ -90,10 +92,11 @@ export function cleanOrder() {
   };
 }
 
-export function deleteOrdered(ID) {
+export function deleteOrdered(id) {
   return async function (dispatch) {
     try {
-      return dispatch({ type: DELETE_ORDERED, payload: ID });
+      const data = await axios.delete(`${VITE_API_URL}userPurchase/${id}`);
+      return dispatch({ type: DELETE_ORDERED, payload: data });
     } catch (error) {
       return dispatch({
         type: DELETE_ORDERED,
