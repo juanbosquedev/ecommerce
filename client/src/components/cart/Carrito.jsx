@@ -3,7 +3,7 @@ import {
   deleteOrder,
   puerchesOrder,
   cleanOrder,
-} from "../redux/actions/actionCreator";
+} from "../../redux/actions/actionCreator";
 
 export const Carrito = () => {
   

@@ -1,4 +1,4 @@
-const { Purchases } = require("../models");
+const { Purchases } = require("../database/database");
 
 module.exports = async (req, res) => {
   try {
@@ -6,6 +6,7 @@ module.exports = async (req, res) => {
     const pur =purchas.purcheseOrder.map(async(it)=>{
       const obj ={
         userID:purchas.userID,
+
         id:it.id,
         title:it.title
       };

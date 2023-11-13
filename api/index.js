@@ -1,10 +1,6 @@
 require("dotenv").config();
 const server = require("./src/server");
 const { conn } = require("./src/database/database");
-const { Users, Purchases } = require("./src/models");
-
-Users.belongsToMany(Purchases, { through: "usuario_purchase" });
-Purchases.belongsToMany(Users, { through: "usuario_purchase" });
 
 const { PORT } = process.env;
 

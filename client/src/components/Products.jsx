@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux/";
 import { useEffect } from "react";
 import { get_all, addOrder, deleteOrder } from "../redux/actions/actionCreator";
-import { Card } from "../components/Card";
+import { Card } from "./card/Card";
 import PropTypes from "prop-types";
 
 

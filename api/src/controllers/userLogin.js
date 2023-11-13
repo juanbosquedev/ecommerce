@@ -1,7 +1,7 @@
 const users = require("../../users.json");
 const fs = require("fs");
 
-const { Users } = require("../models/index");
+const { Users } = require("../database/database");
 
 module.exports = async (req, res) => {
   const jsonData = fs.readFileSync("users.json", "utf8");
