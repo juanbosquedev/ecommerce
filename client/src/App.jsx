@@ -1,9 +1,9 @@
 import { Route, Routes, Navigate } from "react-router-dom";
 import { NavBar } from "./components/Nav";
-import { Login } from "./components/Login";
+import { Login } from "../src/components/login/Login";
 import { Products } from "./components/Products";
 import { useSelector } from "react-redux";
-import { Carrito } from "./components/Carrito";
+import { Carrito } from "./components/cart/Carrito";
 import { Pedidos } from "./components/Pedidos";
 
 function App() {
