@@ -1,6 +1,5 @@
 import { Route, Routes, Navigate } from "react-router-dom";
 import { NavBar } from "./components/Nav";
-import { Login } from "../src/components/login/Login";
 import { Products } from "./components/Products";
 import { useSelector } from "react-redux";
 import { Carrito } from "./components/cart/Carrito";
@@ -14,7 +13,6 @@ function App() {
       <NavBar logged={userLog} />
       <div className="container">
         <Routes>
-          {!userLog && <Route path="/" element={<Login />}></Route>}
           <Route path="/Tienda" element={<Products logged={userLog} />}></Route>
           {userLog && (
             <Route
