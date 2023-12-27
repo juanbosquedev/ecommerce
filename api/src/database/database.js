@@ -5,11 +5,6 @@ const PurchaseFunction = require("../models/Purchases");
 
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, DB_PORT, POSTGRESQL_URL } = process.env;
 
-// const sequelize = new Sequelize(`${DB_NAME}`, `${DB_USER}`, `${DB_PASSWORD}`, {
-//   host: `${DB_HOST}`,
-//   dialect: `${DB_USER}`,
-//   logging: false,
-// }); postgres://haeagjik:9JG-d5ztfnCmdlLjDsTqsAF88jH5Zyad@drona.db.elephantsql.com/haeagjik
 const sequelize = new Sequelize(`${POSTGRESQL_URL}`, {
   dialect: `${DB_USER}`,
   host: `${DB_HOST}`,
