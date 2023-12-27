@@ -9,12 +9,12 @@ export const GET_PURCHASES = "GET_PURCHASES";
 export const GET_USER_PURCHASES = "GET_USER_PURCHASES";
 export const PURCHES_ORDER = "PURCHES_ORDER";
 
-const { VITE_API_URL } = import.meta.env; //http://localhost:8000/
+const API = import.meta.env.VITE_API_URL; 
 
 export function get_all() {
   return async function (dispatch) {
     try {
-      const { data } = await axios.get(`${VITE_API_URL}productsAll`);
+      const { data } = await axios.get(`${API}productsAll`);
       return dispatch({ type: GET_ALL, payload: data });
     } catch (error) {
       return dispatch({
@@ -28,7 +28,7 @@ export function get_all() {
 export function userLog(user) {
   return async function (dispatch) {
     try {
-      const { data } = await axios.post(`${VITE_API_URL}userLogin`, user);
+      const { data } = await axios.post(`${API}userLogin`, user);
       return dispatch({ type: USER_LOG, payload: data });
     } catch (error) {
       return dispatch({
@@ -54,7 +54,7 @@ export function addOrder(data) {
 export function puerchesOrder(purchas) {
   return async function (dispatch) {
     try {
-      const { data } = await axios.post(`${VITE_API_URL}userPurchase`, {
+      const { data } = await axios.post(`${API}userPurchase`, {
         purchas,
       });
       return dispatch({ type: PURCHES_ORDER, payload: data });
@@ -95,7 +95,7 @@ export function cleanOrder() {
 export function deleteOrdered(id) {
   return async function (dispatch) {
     try {
-      const data = await axios.delete(`${VITE_API_URL}userPurchase/${id}`);
+      const data = await axios.delete(`${API}userPurchase/${id}`);
       return dispatch({ type: DELETE_ORDERED, payload: data });
     } catch (error) {
       return dispatch({
@@ -109,7 +109,7 @@ export function deleteOrdered(id) {
 export function get_purchases() {
   return async function (dispatch) {
     try {
-      const { data } = await axios.get(`${VITE_API_URL}getPurchases`);
+      const { data } = await axios.get(`${API}getPurchases`);
       return dispatch({ type: GET_PURCHASES, payload: data });
     } catch (error) {
       return dispatch({
@@ -123,7 +123,7 @@ export function get_purchases() {
 export function get_purchaseById(userID) {
   return async function (dispatch) {
     try {
-      const { data } = await axios.get(`${VITE_API_URL}userPurchase/${userID}`);
+      const { data } = await axios.get(`${API}userPurchase/${userID}`);
       return dispatch({ type: GET_USER_PURCHASES, payload: data });
     } catch (error) {
       return dispatch({
