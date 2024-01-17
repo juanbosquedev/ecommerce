@@ -5,7 +5,7 @@ module.exports = async (req, res) => {
 
    const {userID} = req.params
     const purchase = await Purchases.findAll({
-      where: {userID, },
+      where: {userID },
     });
     if (purchase.length > 0) res.status(200).json(purchase);
     else res.status(200).send("Esperamos por tu pedido")
