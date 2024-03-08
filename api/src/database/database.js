@@ -5,9 +5,9 @@ const PurchaseFunction = require("../models/Purchases");
 
 const { DB_USER, DB_HOST, POSTGRESQL_URL } = process.env;
 
-const sequelize = new Sequelize(`postgres://haeagjik:9JG-d5ztfnCmdlLjDsTqsAF88jH5Zyad@drona.db.elephantsql.com/haeagjik`, {
-  dialect: `postgres`,
-  host: `drona.db.elephantsql.com`,
+const sequelize = new Sequelize(`${POSTGRESQL_URL}`, {
+  dialect: `${DB_USER}`,
+  host: `${DB_HOST}`,
   dialectOptions: {
     ssl: true,
   },
