@@ -11,7 +11,7 @@ const {
 
 const router = Router();
 
-router.get("/productsAll", productsAll);
+router.get("/", productsAll);
 
 // router.post("/userLogin", userLogin);
 // router.post("/userPurchase", userPurchase);
