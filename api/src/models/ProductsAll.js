@@ -1,8 +1,9 @@
-const { DataTypes } = require("sequelize");
-const { conn } = require("../database/database.js");
+const { Sequelize, DataTypes } = require("sequelize");
+require("dotenv").config();
+const { POSTGRESQL_URL } = process.env;
+const sequelize = new Sequelize(`${POSTGRESQL_URL}`);
 
-
-const ProductsAll = conn.define(
+const ProductsAll = sequelize.define(
   "productsAll",
   {
     id: {
