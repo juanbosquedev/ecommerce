@@ -1,4 +1,8 @@
 require("dotenv").config();
+import * as pg from 'pg';
+import { Sequelize } from 'sequelize';
+
+
 const { Sequelize } = require("sequelize");
 const UserFunction = require("../models/Users");
 const PurchaseFunction = require("../models/Purchases");
