@@ -4,7 +4,7 @@ const { Sequelize } = require("sequelize");
 const pg = require("pg");
 
 const sequelize = new Sequelize(`${POSTGRESQL_URL}`, {
-  dialect: pg,
+  dialectModule: pg,
   host: `${DB_HOST}`,
   dialectOptions: {
     ssl: true,
